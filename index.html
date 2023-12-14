@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Proyecto Integrador</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="column">
+            <h2>Repuestos Toyota</h2>
+            <br>
+            <form action="" id="form">
+                <label for="">Repuesto</label>
+                <input type="text" id="repuesto">
+                <br><br>
+                <label for="">Código</label>
+                <input type="text" id="codigo">
+                <br><br>
+                <label for="">Precio</label>
+                <input type="text" id="precio">
+                <br><br>
+                <label for="">Hora cliente</label>
+                <input type="text" id="cliente">
+                <br><br>
+                <label for="">DNI</label>
+                <input type="text" id="dni">
+                <br><br>
+                <label for="">Estado</label>
+                <input type="text" id="estado">
+                <br><br>
+            </form>
+            <button id="agregarButton">Agregar Datos</button>
+        </div>
+        <div class="column">
+            <h1>Tabla de Datos</h1>
+
+            <table id="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Repuesto</th>
+                        <th>Código</th>
+                        <th>Precio</th>
+                        <th>Nombre cliente</th>
+                        <th>DNI</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("agregarButton").addEventListener("click", function () {
+            var repuesto = document.getElementById("repuesto").value;
+            var codigo = document.getElementById("codigo").value;
+            var precio = document.getElementById("precio").value;
+            var nombrecliente = document.getElementById("cliente").value;
+            var clientedni = document.getElementById("dni").value;
+            var estado = document.getElementById("estado").value;
+
+            var table = document.getElementById("tbody");
+            var newRow = table.insertRow();
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            var cell6 = newRow.insertCell(5);
+            var cell7 = newRow.insertCell(6);
+
+            cell1.innerHTML = repuesto;
+            cell2.innerHTML = codigo;
+            cell3.innerHTML = precio;
+            cell4.innerHTML = nombrecliente;
+            cell5.innerHTML = clientedni;
+            cell6.innerHTML = estado;
+            cell7.innerHTML = '<button onclick="editarFila(this)" class="edit">Editar</button> <button onclick="eliminarFila(this)" class="delete">Eliminar</button>';
+
+            document.getElementById("form").reset();
+        });
+
+        function editarFila(button) {
+            var row = button.parentNode.parentNode;
+            var repuesto = prompt("Ingrese el nuevo repuesto:");
+            var codigo = prompt("Ingrese la nueva codigo:");
+            var precio = prompt("Ingrese la nueva precio:");
+            var cliente = prompt("Ingrese el nuevo cliente:");
+            var dni = prompt("Ingrese la nueva dni:");
+            var estado = prompt("Ingrese el nuevo estado:");
+
+            row.cells[0].innerHTML = repuesto;
+            row.cells[1].innerHTML = codigo;
+            row.cells[2].innerHTML = precio;
+            row.cells[3].innerHTML = cliente;
+            row.cells[4].innerHTML = dni;
+            row.cells[5].innerHTML = estado;
+        }
+
+        function eliminarFila(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+
+</html>
